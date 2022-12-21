@@ -43,11 +43,14 @@
         
     </select>
 
-    <select id="selectReviewByStore">
-
+    <select id="selectReviewByStore" parameterType="int">
+        select * from review, store
+        WHERE review.store_id = store.store_id and review.store_id=${storeId};
     </select>
 
     <select id="selectByCondition">
-
+        select * from review, store
+        WHERE review.store_id = store.store_id
+        AND
     </select>
 </mapper>

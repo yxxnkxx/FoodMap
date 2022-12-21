@@ -22,6 +22,10 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
+	implementation "io.springfox:springfox-boot-starter:3.0.0"
+
+
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -31,3 +35,4 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
