@@ -25,7 +25,6 @@
 
     <resultMap id="reviewOnlyMap" type="Review">
         <id column="review_seq" property="storeId"/>
-        <result column="store_id" property="storeId"/>
         <result column="visit_date" property="visitDate"/>
         <result column="star" property="star"/>
         <result column="memo" property="memo"/>
@@ -37,20 +36,23 @@
         VALUES (#{storeId}, #{visitDate}, #{star}, #{memo}, #{imageUrl})
     </insert>
     
-    <select id="selectAll" resultMap="reviewTotalMap">
-        select * from review, store
-        WHERE review.store_id = store.store_id;
-        
-    </select>
 
-    <select id="selectReviewByStore" parameterType="int">
+
+    <select id="selectReviewByStore"  resultMap="reviewOnlyMap" parameterType="int">
         select * from review, store
         WHERE review.store_id = store.store_id and review.store_id=${storeId};
     </select>
 
-    <select id="selectByCondition">
+    <select id="selectByCondition" resultMap="reviewTotalMap" parameterType="SearchCondition">
         select * from review, store
         WHERE review.store_id = store.store_id
-        AND
+        <if test="searchType != 'none'">
+            AND ${searchType} LIKE concat('%', #{keyword}, '%')
+        </if>
+
+        <if test="sortType != 'none'">
+            ORDER BY ${sortType} ${sortDir}
+        </if>
+
     </select>
 </mapper>

@@ -11,4 +11,5 @@ public class Store {
     private String placeUrl;
     private double x;
     private double y;
+    private int regCnt;
 }

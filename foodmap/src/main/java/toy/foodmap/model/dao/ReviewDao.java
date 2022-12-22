@@ -10,7 +10,6 @@ public interface ReviewDao {
 
     void insertReview(Review review);
 
-    List<Review> selectAll();
 
     List<Review> selectReviewByStore(int storeId);
 
