@@ -1,15 +1,16 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
+  <div>
+    <div>
       <div class="d-flex align-center"></div>
-    </v-app-bar>
+    </div>
+    >
 
-    <v-main>
-      <v-btn to="/register">등록</v-btn>
+    <div>
+      <b-btn to="/register">등록</b-btn>
       <router-view />
       <MapVue></MapVue>
-    </v-main>
-  </v-app>
+    </div>
+  </div>
 </template>
 
 <script>

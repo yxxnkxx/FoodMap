@@ -1,35 +1,34 @@
 <template>
-  <v-app>
+  <div>
     <h2>map</h2>
-    <v-container>
+    <b-container>
       <div class="map_wrap">
         <div
           id="map"
           style="
-            width: 1000px%;
-            height: 800px;
+            width: 500px;
+            height: 400px;
             position: relative;
             overflow: hidden;
           "
         ></div>
-
-        <div id="menu_wrap" class="bg_white">
-          <div class="option">
-            <div>
-              <v-form ref="form">
-                <v-text-field v-model="keyword"></v-text-field>
-
-                <v-btn @click="keySearch()">검색</v-btn>
-              </v-form>
-            </div>
-          </div>
-          <hr />
-          <ul id="placesList"></ul>
-          <div id="pagination"></div>
+        <div>
+          <b-form-group>
+            <b-form-input
+              id="input-1"
+              v-model="keyword"
+              type="text"
+              placeholder="검색어를 입력하세요"
+              required
+            ></b-form-input>
+            <b-button @click="searchPlaces" type="submit" variant="primary"
+              >Submit</b-button
+            >
+          </b-form-group>
         </div>
       </div>
-    </v-container>
-  </v-app>
+    </b-container>
+  </div>
 </template>
 <script>
 /*global kakao*/
@@ -65,6 +64,9 @@ export default {
       script.src =
         "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=e894c36415fadaef2e28d48b5d15ce93&libraries=services,drawing";
       document.head.appendChild(script);
+    },
+    searchPlaces() {
+      this.$store.dispatch("searchPlaces", this.keyword);
     },
   },
 };

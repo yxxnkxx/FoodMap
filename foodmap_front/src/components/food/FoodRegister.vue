@@ -1,14 +1,14 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-form ref="form">
+  <div>
+    <b-container>
+      <b-form ref="form">
         <v-text-field v-model="storeId" label="store" required></v-text-field>
         <v-btn color="primary" dark to="/map"> 식당 검색</v-btn>
 
         <v-btn color="warning"> Reset Validation </v-btn>
-      </v-form>
-    </v-container>
-  </v-app>
+      </b-form>
+    </b-container>
+  </div>
 </template>
 
 <script>
