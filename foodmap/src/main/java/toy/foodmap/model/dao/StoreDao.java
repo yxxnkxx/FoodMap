@@ -10,7 +10,6 @@ public interface StoreDao {
 
     void insertStore(Store store);
 
-    List<Store> selectAll();
 
     List<Store> selectByCondition(SearchCondition searchCondition);
 }

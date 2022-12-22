@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="toy.foodmap.model.dao.StoreDao">
+
+    <resultMap id="storeMap" type="Store">
+        <id column="store_id" property="storeId"/>
+        <result column="store_name" property="storeName"/>
+        <result column="address_name" property="addressName"/>
+        <result column="category" property="category"/>
+        <result column="place_url" property="placeUrl"/>
+        <result column="x" property="x"/>
+        <result column="y" property="y"/>
+        <result column="reg_cnt" property="regCnt"/>
+    </resultMap>
+
+
+    <insert id="insertStore" parameterType="Store">
+        INSERT INTO store(store_id,store_name, address_name, category, place_url, x, y, reg_cnt)
+        VALUES (#{storeId}, #{storeName}, #{addressName}, #{category}, #{placeUrl}, #{x}, #{y}, 1);
+    </insert>
+    
+
+
+    <select id="selectByCondition" resultMap="storeMap" parameterType="SearchCondition">
+        select * from store
+        <if test="searchType != 'none'">
+            WHERE ${searchType} LIKE concat('%', #{keyword}, '%')
+        </if>
+        <if test="sortType != 'none'">
+            ORDER BY ${sortType} ${sortDir}
+        </if>
+
+    </select>
+</mapper>
