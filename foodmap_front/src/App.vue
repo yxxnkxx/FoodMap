@@ -6,7 +6,6 @@
     >
 
     <div>
-      <b-btn to="/register">등록</b-btn>
       <router-view />
       <MapVue></MapVue>
     </div>

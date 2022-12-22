@@ -1,17 +1,31 @@
 <template>
   <div>
-    <h2>map</h2>
     <b-container>
+      <b-btn to="/register">등록</b-btn>
       <div class="map_wrap">
-        <div
-          id="map"
-          style="
-            width: 500px;
-            height: 400px;
-            position: relative;
-            overflow: hidden;
-          "
-        ></div>
+        <b-row>
+          <b-col>
+            <div
+              id="map"
+              style="
+                width: 500px;
+                height: 400px;
+                position: relative;
+                overflow: hidden;
+              "
+            ></div>
+          </b-col>
+          <b-col>
+            <div>검색 목록</div>
+            <b-list-group v-for="store in stores" :key="store.store_id">
+              <b-list-group-item>
+                <h5>{{ store.place_name }}</h5>
+                <a :href="store.place_url">링크</a>
+                <b-button @click="addStore(store)">추가</b-button>
+              </b-list-group-item>
+            </b-list-group>
+          </b-col>
+        </b-row>
         <div>
           <b-form-group>
             <b-form-input
@@ -31,6 +45,7 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 /*global kakao*/
 export default {
   name: "KakaoMap",
@@ -42,6 +57,9 @@ export default {
       ps: null,
       markers: [],
     };
+  },
+  computed: {
+    ...mapState(["stores"]),
   },
   mounted() {
     window.kakao && window.kakao.maps ? this.initMap() : this.addScript();
@@ -67,6 +85,10 @@ export default {
     },
     searchPlaces() {
       this.$store.dispatch("searchPlaces", this.keyword);
+    },
+    addStore(store) {
+      console.log(store);
+      this.$store.dispatch("addStore", store);
     },
   },
 };

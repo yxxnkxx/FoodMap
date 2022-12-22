@@ -25,6 +25,7 @@ public class StoreController {
 
     @PostMapping
     public ResponseEntity<String> addStore(Store store) {
+        System.out.println(store);
         storeService.addStore(store);
         return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
     }

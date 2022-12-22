@@ -18,7 +18,7 @@
 
 
     <insert id="insertStore" parameterType="Store">
-        INSERT INTO store(store_id,store_name, address_name, category, place_url, x, y, reg_cnt)
+        INSERT INTO store(store_id, store_name, address_name, category, place_url, x, y, reg_cnt)
         VALUES (#{storeId}, #{storeName}, #{addressName}, #{category}, #{placeUrl}, #{x}, #{y}, 1);
     </insert>
     
